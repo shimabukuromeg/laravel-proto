@@ -29,6 +29,19 @@ RUN apk add --no-cache $PHPIZE_DEPS && \
     pecl install xdebug && \
     docker-php-ext-enable xdebug
 
+RUN apk add --no-cache \
+            # Additionnal dependencies for better rendering
+            ttf-freefont \
+            fontconfig \
+    && \
+
+    # Install wkhtmltopdf from `testing` repository
+    apk add qt5-qtbase-dev \
+            wkhtmltopdf \
+            --no-cache \
+            --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
+            --allow-untrusted
+
 RUN mkdir -p /var/run/php-fpm && \
     chown root:root /var/run/php-fpm
 
@@ -60,6 +73,11 @@ ARG PHP_XDEBUG_REMOTE_CONNECT_BACK="Off"
 ARG PHP_XDEBUG_REMOTE_HOST="docker.for.mac.localhost"
 ARG PHP_XDEBUG_REMOTE_PORT="9001"
 ARG PHP_XDEBUG_IDEKEY="phpstorm"
+
+WORKDIR /tmp
+RUN curl -OL https://oscdl.ipa.go.jp/IPAexfont/IPAexfont00301.zip
+RUN unzip IPAexfont00301.zip
+RUN mv IPAexfont00301 /usr/share/fonts
 
 RUN mkdir -p /app
 WORKDIR /app
