@@ -21,3 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('pdf','PDFController@index')->name('pdf');
 Route::get('phpwkhtmltopdf','PhpWkHtmlToPdfController@index')->name('phpwkhtmltopdf');
+Route::get('phpwkhtmltopdf','PhpWkHtmlToPdfController@index')->name('phpwkhtmltopdf');
+
+// PDF表示
+Route::get('/download-pdf', 'PhpWkHtmlToPdfController@download')->name('phpwkhtmltopdf.download');

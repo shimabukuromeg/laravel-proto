@@ -54,12 +54,18 @@ EOF;
         $pdf->addPage($html);
 
         // Save the PDF
-        if (!$pdf->saveAs('./hello.pdf')) {
+        if (!$pdf->saveAs(storage_path('app/public') . '/hello.pdf')) {
             $error = $pdf->getError();
             dd($error);
             // ... handle error here
         }
 
         return view('phpwkhtmltopdf');
+    }
+
+    public function download()
+    {
+        $path = storage_path('app/public' . '/hello.pdf');
+        return response()->file($path);
     }
 }
