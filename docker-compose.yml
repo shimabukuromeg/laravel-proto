@@ -2,8 +2,8 @@ version: '3'
 
 services:
   php:
-    image: laravel-sample
-    container_name: laravel-sample
+    image: laravel-proto
+    container_name: laravel-proto
     build:
       context: .
       dockerfile: docker/php/Dockerfile
@@ -28,8 +28,8 @@ services:
     depends_on:
       - db
   php-cli:
-    image: laravel-sample-cli
-    container_name: laravel-sample-cli
+    image: laravel-proto-cli
+    container_name: laravel-proto-cli
     depends_on:
       - php
     build:
