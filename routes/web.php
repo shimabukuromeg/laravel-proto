@@ -19,4 +19,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('pdf','PDFController@index');
+Route::get('pdf','PDFController@index')->name('pdf');
