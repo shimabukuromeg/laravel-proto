@@ -28,35 +28,21 @@ class PhpWkHtmlToPdfController extends Controller
         ]);
 
 
-        $aaa = 'テスト';
-        $html = <<<EOF
-            <!DOCTYPE html>
-            <html>
-                <head>
-                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-                </head>
-                <style>
-                body {
-                    padding: 7px;
-                    font-family: "PAexGothic", "IPAexゴシック";
-                }
-                </style>
-                <body>
-                    <div>
-                        <p>PDF化のテストです。</p>
-                        <p>あいうえお</p>
-                        <p>$aaa</p>
-                    </div>
-                </body>
-            </html>
-EOF;
+        $title = 'テスト著作物';
+        $author_name = '山田太郎';
+        $params = ["title"=> $title, "author_name" => $author_name];
+        $html = file_get_contents(storage_path('template/sample.html'));
+
+        foreach($params as $key=>$value) {
+            $html = str_replace("{".$key."}", $value, $html);
+        }
 
         $pdf->addPage($html);
+
 
         // Save the PDF
         if (!$pdf->saveAs(storage_path('app/public') . '/hello.pdf')) {
             $error = $pdf->getError();
-            dd($error);
             // ... handle error here
         }
 
