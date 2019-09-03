@@ -6,15 +6,13 @@ use Illuminate\Http\Request;
 use App\MyClasses\MyService;
 use App\Person;
 use App\Jobs\MyJob;
+use App\Events\PersonEvent;
 
 class HelloController extends Controller
 {
     public function index(Person $person = null)
     {
-        if ($person != null)
-        {
-            MyJob::dispatch($person);
-        }
+        event(new PersonEvent($person));
         $msg = 'show people record.';
         $result = Person::get();
         $data = [
