@@ -25,3 +25,7 @@ Route::get('phpwkhtmltopdf','PhpWkHtmlToPdfController@index')->name('phpwkhtmlto
 
 // PDF表示
 Route::get('/download-pdf', 'PhpWkHtmlToPdfController@download')->name('phpwkhtmltopdf.download');
+
+// Hello,world
+Route::get('/hello', 'HelloController@index')->name('hello');
+Route::get('/hello/{person}', 'HelloController@index');
