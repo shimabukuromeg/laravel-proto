@@ -1,4 +1,4 @@
-FROM seln-contracts-storage-php
+FROM laravel-proto
 
 ENV PATH $PATH:vendor/bin
 
