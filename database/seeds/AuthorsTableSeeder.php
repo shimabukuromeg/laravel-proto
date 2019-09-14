@@ -13,12 +13,13 @@ class AuthorsTableSeeder extends Seeder
     {
         $now = \Carbon\Carbon::now();
         for ($i = 1; $i <= 10; $i++) {
-            $authors = [
+            $author = [
                 'name' => '著作者名' . $i,
                 'kana' => 'チョサクシャメイ' . $i,
                 'created_at' => $now,
                 'updated_at' => $now,
             ];
+            DB::table('authors')->insert($author);
         }
     }
 }
