@@ -47,4 +47,14 @@ class CalculatePointServiceTest extends TestCase
         $result = CalculatePointService::calcPoint($amount);
         $this->assertSame($expected, $result);
     }
+
+    /**
+     * @test
+     * @expectedException \App\Exceptions\PreConditionException
+     * @expectedExceptionMessage 購入金額が負の数
+     */
+    public function calcPoint_購入金額が負の数なら例外をスロー()
+    {
+        CalculatePointService::calcPoint(-1);
+    }
 }
