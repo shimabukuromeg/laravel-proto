@@ -1,11 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class EloquentCustomerPoint
  *
  * @property int $customer_id
  * @property int $point
@@ -23,10 +23,11 @@ final class EloquentCustomerPoint extends Model
      */
     public function addPoint(int $customerId, int $point): bool
     {
-        return $this->newQuery()
-            ->where('customer_id', $customerId)
-            ->update([
-                $this->getConnection()->raw('point=point+?', $point)
-            ]) === 1;
+        return \DB::update('update customer_points set point=point+:point where customer_id=:customer_id',
+                [
+                    'point'       => $point,
+                    'customer_id' => $customerId,
+                ]
+            ) === 1;
     }
 }
