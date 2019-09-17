@@ -34,6 +34,11 @@ class PointEvent extends Model
         return $this->customerId;
     }
 
+    public function getEvent(): string
+    {
+        return $this->event;
+    }
+
     public function getPoint(): int {
         return $this->point;
     }
