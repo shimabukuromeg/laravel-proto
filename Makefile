@@ -8,9 +8,12 @@ build: ## build develoment environment with laradock
 	docker-compose run --rm yarn install
 	docker-compose run --rm yarn run dev
 
-serve: ## Run Server
+up: ## Run Server
 	docker-compose up -d nginx
 	docker-compose up php
+
+down: ## Run Server
+	docker-compose down
 
 art: ## Show artisan commands
 	docker-compose run --rm php-cli php artisan
