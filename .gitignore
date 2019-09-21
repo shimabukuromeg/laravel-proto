@@ -20,3 +20,5 @@ public/fonts/*
 public/images/*
 public/mix-manifest.json
 .idea
+.config/psysh/psysh_history
+.config/
