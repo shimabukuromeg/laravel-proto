@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use App\Http\Actions\AddPointAction;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,3 +21,4 @@ Route::get('/ping', function() {
    return response()->json(['message' =>  'pong']);
 });
 
+Route::put('/customers/add_point', AddPointAction::class);
