@@ -45,4 +45,10 @@ return [
         'client_secret' => env('FACEBOOK_API_SECRET'),
         'redirect' => env('FACEBOOK_CALLBACKURL'),
     ],
+
+    'twitter' => [
+        'client_id' => env('TWITTER_CLIENT_ID'),
+        'client_secret' => env('TWITTER_CLIENT_SECRET'),
+        'redirect' => env('CALLBACK_URL')
+    ],
 ];
