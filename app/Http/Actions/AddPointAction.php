@@ -6,6 +6,8 @@ use App\Http\Requests\AddPointRequest;
 use App\UseCases\AddPointUseCase;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Carbon;
+use App\Exceptions\PreConditionException;
+use Illuminate\Http\Response;
 
 class AddPointAction
 {
@@ -27,13 +29,18 @@ class AddPointAction
         $addPoint = filter_var($request->json('add_point'), FILTER_VALIDATE_INT);
 
         // (2)ポイント加算ユースケース実行
-
-        $customerPoint = $this->useCase->run(
-            $customerId,
-            $addPoint,
-            "ADD_POINT",
-            Carbon::now()
-        );
+        try {
+            $customerPoint = $this->useCase->run(
+                $customerId,
+                $addPoint,
+                "ADD_POINT",
+                Carbon::now()
+            );
+        } catch (PreConditionException $exception) {
+            return new JsonResponse(
+                ['message' => $exception->getMessage()], Response::HTTP_BAD_REQUEST
+            );
+        }
 
         // (3)レスポンス生成
         return response()->json(['customer_point' => $customerPoint]);

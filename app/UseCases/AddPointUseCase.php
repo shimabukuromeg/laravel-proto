@@ -17,6 +17,13 @@ final class AddPointUseCase
 
     private $eloquentCustomerPoint;
 
+    /**
+     * AddPointUseCase constructor.
+     *
+     * @param AddPointService       $service
+     * @param EloquentCustomer      $eloquentCustomer
+     * @param EloquentCustomerPoint $eloquentCustomerPoint
+     */
     public function __construct(
         AddPointService $service,
         EloquentCustomer $eloquentCustomer,
@@ -28,12 +35,19 @@ final class AddPointUseCase
         $this->eloquentCustomerPoint = $eloquentCustomerPoint;
     }
 
+    /**
+     * @param int    $customerId
+     * @param int    $addPoint
+     * @param string $pointEvent
+     * @param Carbon $now
+     * @return int
+     * @throws PreConditionException
+     */
     public function run(int $customerId, int $addPoint, string $pointEvent, Carbon $now): int
     {
-        if ($addPoint <= 0){
-            throw new PreConditionException(
-                'add_point should be equals or greater than 1'
-            );
+        // (1) 事前条件検証
+        if ($addPoint <= 0) {
+            throw new PreConditionException('add_point should be equals or greater than 1');
         }
 
         if (!$this->eloquentCustomer->where('id', $customerId)->exists()){
