@@ -32,3 +32,6 @@ Route::get('/hello/{person}', 'HelloController@index');
 
 // snappy pdf 表示
 Route::get('/snappypdf','SnappyPdfController@index')->name('snappypdf');
+
+Route::get('/login/{social}', 'Auth\LoginController@socialLogin')->where('social', 'facebook|twitter');
+Route::get('/login/{social}/callback', 'Auth\LoginController@handleProviderCallback')->where('social', 'facebook|twitter');
