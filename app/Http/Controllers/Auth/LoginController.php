@@ -50,9 +50,17 @@ class LoginController extends Controller
         return Socialite::driver($social)->redirect();
     }
 
+    /**
+     * @param $social
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function handleProviderCallback($social)
     {
-        $userSocial = Socialite::driver($social)->stateless()->user();
+        if ($social === 'twitter') {
+            $userSocial = Socialite::driver($social)->user();
+        } else {
+            $userSocial = Socialite::driver($social)->stateless()->user();
+        }
 
         $user = User::where(['email' => $userSocial->getEmail()])->first();
 
