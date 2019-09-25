@@ -15,5 +15,9 @@ class DatabaseSeeder extends Seeder
         $this->call(AuthorsTableSeeder::class);
         $this->call(BookdetailsTableSeeder::class);
         $this->call(BooksTableSeeder::class);
+
+        // 9-3 WebAPIのテスト
+        $this->call(CustomersTableSeeder::class);
+        $this->call(CustomerPointsTableSeeder::class);
     }
 }
