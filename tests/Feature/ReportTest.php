@@ -9,14 +9,10 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class ReportTest extends TestCase
 {
     /**
-     * A basic feature test example.
-     *
-     * @return void
+     * @test
      */
-    public function testExample()
+    public function api_customersにGETメソッドでアクセスできる()
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        
     }
 }
