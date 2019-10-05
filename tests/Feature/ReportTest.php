@@ -13,6 +13,7 @@ class ReportTest extends TestCase
      */
     public function api_customersにGETメソッドでアクセスできる()
     {
-        
+        $response = $this->get('api/customers');
+        $response->assertStatus(200);
     }
 }
